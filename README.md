@@ -16,11 +16,11 @@ A flexible and reusable file upload library with support for S3 and filesystem s
 ## Installation
 
 ```bash
-npm install upload-it
+npm install @gw-intech/upload-it
 # or
-yarn add upload-it
+yarn add @gw-intech/upload-it
 # or
-pnpm add upload-it
+pnpm add @gw-intech/upload-it
 ```
 
 ## Usage
@@ -28,22 +28,22 @@ pnpm add upload-it
 ### Basic Usage with React Component
 
 ```jsx
-import { UploadButton } from "upload-it/react";
+import { UploadButton } from '@gw-intech/upload-it/react';
 
 function MyApp() {
   return (
     <UploadButton
-      provider="s3"
+      provider='s3'
       s3={{
-        region: "us-east-1",
-        bucket: "my-bucket",
+        region: 'us-east-1',
+        bucket: 'my-bucket',
         credentials: {
           /* For development only! See secure usage below */
         },
       }}
-      onUploadComplete={(files) => console.log("Uploaded files:", files)}
+      onUploadComplete={(files) => console.log('Uploaded files:', files)}
       multiple={true}
-      accept="image/*,.pdf"
+      accept='image/*,.pdf'
     />
   );
 }
@@ -55,15 +55,15 @@ function MyApp() {
 
 ```tsx
 // app/api/upload/presigned/route.ts
-import { presignedUrlRoute } from "upload-it/server";
+import { presignedUrlRoute } from '@gw-intech/upload-it/server';
 export { presignedUrlRoute as POST };
 
 // app/api/upload/complete/route.ts
-import { completeUploadRoute } from "upload-it/server";
+import { completeUploadRoute } from '@gw-intech/upload-it/server';
 export { completeUploadRoute as POST };
 
 // app/api/upload/url/[fileKey]/route.ts
-import { getFileUrlRoute } from "upload-it/server";
+import { getFileUrlRoute } from '@gw-intech/upload-it/server';
 export { getFileUrlRoute as GET };
 ```
 
@@ -80,21 +80,21 @@ UPLOAD_IT_S3_FOLDER=uploads
 3. Use the component with server mode:
 
 ```jsx
-import { UploadButton } from "upload-it/react";
+import { UploadButton } from '@gw-intech/upload-it/react';
 
 function MyApp() {
   return (
     <UploadButton
-      provider="s3"
+      provider='s3'
       server={{
-        mode: "server",
+        mode: 'server',
         endpoints: {
-          getUploadUrl: "/api/upload/presigned",
-          completeUpload: "/api/upload/complete",
-          getAccessUrl: "/api/upload/url",
+          getUploadUrl: '/api/upload/presigned',
+          completeUpload: '/api/upload/complete',
+          getAccessUrl: '/api/upload/url',
         },
       }}
-      onUploadComplete={(files) => console.log("Uploaded files:", files)}
+      onUploadComplete={(files) => console.log('Uploaded files:', files)}
     />
   );
 }
@@ -103,17 +103,17 @@ function MyApp() {
 ### Using the React Hook
 
 ```jsx
-import { useUploader } from "upload-it";
-import { useState } from "react";
+import { useUploader } from '@gw-intech/upload-it';
+import { useState } from 'react';
 
 function MyUploader() {
   const [files, setFiles] = useState([]);
 
   const uploader = useUploader({
-    provider: "s3",
+    provider: 's3',
     s3: {
-      region: "us-east-1",
-      bucket: "my-bucket",
+      region: 'us-east-1',
+      bucket: 'my-bucket',
       credentials: {
         /* ... */
       },
@@ -132,7 +132,7 @@ function MyUploader() {
 
   return (
     <div>
-      <input type="file" multiple onChange={handleFileChange} />
+      <input type='file' multiple onChange={handleFileChange} />
       {uploader.isUploading && (
         <div>
           Uploading... {Object.values(uploader.progress)[0]?.percentage}%
@@ -140,8 +140,8 @@ function MyUploader() {
       )}
       {files.map((file) => (
         <div key={file.key}>
-          {file.name} -{" "}
-          <a href={file.url} target="_blank" rel="noopener noreferrer">
+          {file.name} -{' '}
+          <a href={file.url} target='_blank' rel='noopener noreferrer'>
             View
           </a>
         </div>
@@ -154,17 +154,17 @@ function MyUploader() {
 ### Filesystem Storage
 
 ```jsx
-import { UploadButton } from "upload-it/react";
+import { UploadButton } from '@gw-intech/upload-it/react';
 
 function MyApp() {
   return (
     <UploadButton
-      provider="filesystem"
+      provider='filesystem'
       filesystem={{
-        uploadDir: "./public/uploads",
-        publicPath: "/uploads",
+        uploadDir: './public/uploads',
+        publicPath: '/uploads',
       }}
-      onUploadComplete={(files) => console.log("Uploaded files:", files)}
+      onUploadComplete={(files) => console.log('Uploaded files:', files)}
     />
   );
 }
@@ -173,13 +173,13 @@ function MyApp() {
 ### Core API (Non-React)
 
 ```js
-import { createUploader } from "upload-it";
+import { createUploader } from '@gw-intech/upload-it';
 
 const uploader = createUploader({
-  provider: "s3",
+  provider: 's3',
   s3: {
-    region: "us-east-1",
-    bucket: "my-bucket",
+    region: 'us-east-1',
+    bucket: 'my-bucket',
     credentials: {
       /* ... */
     },
@@ -192,10 +192,10 @@ const uploader = createUploader({
 async function uploadFile(file) {
   try {
     const result = await uploader.uploadFile(file);
-    console.log("File uploaded:", result);
+    console.log('File uploaded:', result);
     return result;
   } catch (error) {
-    console.error("Upload failed:", error);
+    console.error('Upload failed:', error);
   }
 }
 ```
