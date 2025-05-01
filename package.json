@@ -1,5 +1,5 @@
 {
-  "name": "upload-it",
+  "name": "@gw-intech/upload-it",
   "version": "0.1.1",
   "description": "Flexible and reusable file upload library with support for S3 and filesystem storage",
   "main": "dist/index.js",
