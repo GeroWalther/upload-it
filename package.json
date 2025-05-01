@@ -1,0 +1,62 @@
+{
+  "name": "upload-it",
+  "version": "0.1.1",
+  "description": "Flexible and reusable file upload library with support for S3 and filesystem storage",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "test": "jest",
+    "prepublishOnly": "npm run build",
+    "prepare-release": "node scripts/prepare-release.js"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "keywords": [
+    "upload",
+    "file",
+    "s3",
+    "aws",
+    "presigned",
+    "react",
+    "nextjs",
+    "file-upload"
+  ],
+  "author": "gw-intech",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/upload-it.git"
+  },
+  "homepage": "https://github.com/yourusername/upload-it#readme",
+  "bugs": {
+    "url": "https://github.com/yourusername/upload-it/issues"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.300.0",
+    "@aws-sdk/s3-request-presigner": "^3.300.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.33",
+    "eslint": "^8.37.0",
+    "jest": "^29.5.0",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.3"
+  }
+}
