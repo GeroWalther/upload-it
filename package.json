@@ -37,11 +37,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/upload-it.git"
+    "url": "https://github.com/GeroWalther/upload-it.git"
   },
-  "homepage": "https://github.com/yourusername/upload-it#readme",
+  "homepage": "https://github.com/GeroWalther/upload-it#readme",
   "bugs": {
-    "url": "https://github.com/yourusername/upload-it/issues"
+    "url": "https://github.com/GeroWalther/upload-it/issues"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.300.0",
