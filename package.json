@@ -37,7 +37,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GeroWalther/upload-it.git"
+    "url": "git+https://github.com/GeroWalther/upload-it.git"
   },
   "homepage": "https://github.com/GeroWalther/upload-it#readme",
   "bugs": {
@@ -58,5 +58,8 @@
     "jest": "^29.5.0",
     "tsup": "^6.7.0",
     "typescript": "^5.0.3"
+  },
+  "directories": {
+    "example": "examples"
   }
 }
