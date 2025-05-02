@@ -28,7 +28,7 @@ pnpm add @gw-intech/upload-it
 ### Basic Usage with React Component
 
 ```jsx
-import { UploadButton } from '@gw-intech/upload-it/react';
+import { UploadButton } from '@gw-intech/upload-it';
 
 function MyApp() {
   return (
@@ -55,15 +55,15 @@ function MyApp() {
 
 ```tsx
 // app/api/upload/presigned/route.ts
-import { presignedUrlRoute } from '@gw-intech/upload-it/server';
+import { presignedUrlRoute } from '@gw-intech/upload-it';
 export { presignedUrlRoute as POST };
 
 // app/api/upload/complete/route.ts
-import { completeUploadRoute } from '@gw-intech/upload-it/server';
+import { completeUploadRoute } from '@gw-intech/upload-it';
 export { completeUploadRoute as POST };
 
 // app/api/upload/url/[fileKey]/route.ts
-import { getFileUrlRoute } from '@gw-intech/upload-it/server';
+import { getFileUrlRoute } from '@gw-intech/upload-it';
 export { getFileUrlRoute as GET };
 ```
 
@@ -80,7 +80,7 @@ UPLOAD_IT_S3_FOLDER=uploads
 3. Use the component with server mode:
 
 ```jsx
-import { UploadButton } from '@gw-intech/upload-it/react';
+import { UploadButton } from '@gw-intech/upload-it';
 
 function MyApp() {
   return (
@@ -154,7 +154,7 @@ function MyUploader() {
 ### Filesystem Storage
 
 ```jsx
-import { UploadButton } from '@gw-intech/upload-it/react';
+import { UploadButton } from '@gw-intech/upload-it';
 
 function MyApp() {
   return (
