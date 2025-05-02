@@ -51,19 +51,21 @@ function MyApp() {
 
 ### Secure Usage with Next.js
 
+When using Next.js, you'll need to import the server-specific routes from the `/server` subpath:
+
 1. Create API routes for uploads:
 
 ```tsx
 // app/api/upload/presigned/route.ts
-import { presignedUrlRoute } from '@gw-intech/upload-it';
+import { presignedUrlRoute } from '@gw-intech/upload-it/server';
 export { presignedUrlRoute as POST };
 
 // app/api/upload/complete/route.ts
-import { completeUploadRoute } from '@gw-intech/upload-it';
+import { completeUploadRoute } from '@gw-intech/upload-it/server';
 export { completeUploadRoute as POST };
 
 // app/api/upload/url/[fileKey]/route.ts
-import { getFileUrlRoute } from '@gw-intech/upload-it';
+import { getFileUrlRoute } from '@gw-intech/upload-it/server';
 export { getFileUrlRoute as GET };
 ```
 
@@ -99,6 +101,20 @@ function MyApp() {
   );
 }
 ```
+
+### Using with Vite or non-Next.js environments
+
+When using Vite or other build systems, you only need to import from the main package:
+
+```jsx
+import {
+  UploadButton,
+  useUploader,
+  createUploader,
+} from '@gw-intech/upload-it';
+```
+
+The Next.js specific routes are isolated in the `/server` subpath to avoid dependency conflicts.
 
 ### Using the React Hook
 

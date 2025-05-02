@@ -25,12 +25,7 @@ export { useUploader } from './hooks/useUploader';
 export { UploadButton } from './components/UploadButton';
 export { UploadDialog } from './components/UploadDialog';
 
-// Server exports
-export {
-  presignedUrlRoute,
-  completeUploadRoute,
-  getFileUrlRoute,
-} from './server/next-routes';
+// API handlers (server utilities without Next.js dependencies)
 export {
   generatePresignedUrl,
   completeUpload,
@@ -44,3 +39,5 @@ import { UploaderConfig } from './core/types';
 export function createUploader(config: UploaderConfig) {
   return new Uploader(config);
 }
+
+// Note: Next.js specific routes are available via import from '@gw-intech/upload-it/server'
