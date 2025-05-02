@@ -23,6 +23,55 @@ yarn add @gw-intech/upload-it
 pnpm add @gw-intech/upload-it
 ```
 
+## Browser Compatibility
+
+The library is designed to work in both browser and Node.js environments:
+
+- **S3 Provider**: Fully supported in browsers
+- **Filesystem Provider**: Only for server-side use (Node.js)
+
+When using the library in client-side applications (like Vite, Create React App, etc.), you should:
+
+1. Use the S3 provider for direct client-side uploads
+2. Or set up server endpoints for secure uploads
+
+```jsx
+// ✅ Works in browsers
+import { UploadButton } from '@gw-intech/upload-it';
+
+function App() {
+  return (
+    <UploadButton
+      provider='s3'
+      s3={{
+        region: 'us-east-1',
+        bucket: 'my-bucket',
+        credentials: {
+          // For development only! Use server mode in production
+          accessKeyId: '...',
+          secretAccessKey: '...',
+        },
+      }}
+    />
+  );
+}
+
+// ❌ Won't work in browsers - filesystem requires Node.js
+import { UploadButton } from '@gw-intech/upload-it';
+
+function App() {
+  return (
+    <UploadButton
+      provider='filesystem' // ⚠️ This won't work in browsers
+      filesystem={{
+        uploadDir: './public/uploads',
+        publicPath: '/uploads',
+      }}
+    />
+  );
+}
+```
+
 ## Usage
 
 ### Basic Usage with React Component

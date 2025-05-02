@@ -3,14 +3,17 @@
 // Handles file validation, upload progress tracking, and error handling
 // Coordinates with storage providers to handle the actual storage
 
-import { createProvider, validateConfig } from "../providers/provider-factory";
+import { createProvider, validateConfig } from '../providers/provider-factory';
 import {
   UploaderConfig,
   FileInfo,
   FileMetadata,
   UploadProgress,
   StorageProvider,
-} from "./types";
+} from './types';
+
+// Check if we're in a browser environment
+const isBrowser = typeof window !== 'undefined';
 
 /**
  * Main uploader class that orchestrates the file upload process.
@@ -52,9 +55,18 @@ export class Uploader {
    * @throws {Error} If the configuration is invalid
    */
   constructor(config: UploaderConfig) {
+    // Check for potential misuse in browser environments
+    if (isBrowser && config.provider === 'filesystem') {
+      console.warn(
+        "Warning: You're using the filesystem provider in a browser environment. " +
+          'This provider cannot access the file system in browsers and will have limited functionality. ' +
+          'Consider using the S3 provider for client-side uploads or set up server endpoints.'
+      );
+    }
+
     // Validate configuration
     if (!validateConfig(config)) {
-      throw new Error("Invalid uploader configuration");
+      throw new Error('Invalid uploader configuration');
     }
 
     this.config = config;
@@ -97,8 +109,9 @@ export class Uploader {
       };
 
       // Get upload URL from provider
-      const { uploadUrl, fileKey, fields } =
-        await this.provider.getUploadUrl(fileInfo);
+      const { uploadUrl, fileKey, fields } = await this.provider.getUploadUrl(
+        fileInfo
+      );
 
       // Upload the file
       let uploadedFile: Response;
@@ -113,29 +126,29 @@ export class Uploader {
         });
 
         // Add the file itself
-        formData.append("file", file);
+        formData.append('file', file);
 
         // Upload with progress tracking
         uploadedFile = await this.uploadWithProgress(
           uploadUrl,
           {
-            method: "POST",
+            method: 'POST',
             body: formData,
           },
-          file,
+          file
         );
       } else {
         // Direct upload (e.g., S3 presigned PUT URL)
         uploadedFile = await this.uploadWithProgress(
           uploadUrl,
           {
-            method: "PUT",
+            method: 'PUT',
             body: file,
             headers: {
-              "Content-Type": file.type,
+              'Content-Type': file.type,
             },
           },
-          file,
+          file
         );
       }
 
@@ -226,8 +239,8 @@ export class Uploader {
    * ```
    */
   async deleteFile(fileKey: string): Promise<boolean> {
-    if (typeof this.provider.deleteFile !== "function") {
-      throw new Error("Delete operation not supported by this provider");
+    if (typeof this.provider.deleteFile !== 'function') {
+      throw new Error('Delete operation not supported by this provider');
     }
 
     return this.provider.deleteFile(fileKey);
@@ -246,7 +259,7 @@ export class Uploader {
   private async uploadWithProgress(
     url: string,
     options: RequestInit,
-    file: File,
+    file: File
   ): Promise<Response> {
     return new Promise((resolve, reject) => {
       // If no progress callback, just use regular fetch
@@ -288,18 +301,18 @@ export class Uploader {
 
       // Setup error handler
       xhr.onerror = () => {
-        reject(new Error("Network error during upload"));
+        reject(new Error('Network error during upload'));
       };
 
       // Open the request
-      xhr.open(options.method || "GET", url);
+      xhr.open(options.method || 'GET', url);
 
       // Set headers
       if (options.headers) {
         Object.entries(options.headers as Record<string, string>).forEach(
           ([key, value]) => {
             xhr.setRequestHeader(key, value);
-          },
+          }
         );
       }
 
@@ -317,10 +330,10 @@ export class Uploader {
    */
   private parseHeaders(headerStr: string): Headers {
     const headers = new Headers();
-    const headerPairs = headerStr.trim().split("\r\n");
+    const headerPairs = headerStr.trim().split('\r\n');
 
     headerPairs.forEach((headerPair) => {
-      const index = headerPair.indexOf(": ");
+      const index = headerPair.indexOf(': ');
       if (index > 0) {
         const key = headerPair.substring(0, index);
         const val = headerPair.substring(index + 2);
@@ -343,7 +356,9 @@ export class Uploader {
     // Check file size
     if (this.config.maxFileSize && file.size > this.config.maxFileSize) {
       throw new Error(
-        `File size exceeds maximum allowed size (${this.formatFileSize(this.config.maxFileSize)})`,
+        `File size exceeds maximum allowed size (${this.formatFileSize(
+          this.config.maxFileSize
+        )})`
       );
     }
 
@@ -354,7 +369,7 @@ export class Uploader {
     ) {
       const isAllowed = this.isFileTypeAllowed(
         file,
-        this.config.allowedFileTypes,
+        this.config.allowedFileTypes
       );
       if (!isAllowed) {
         throw new Error(`File type not allowed: ${file.type}`);
@@ -373,18 +388,18 @@ export class Uploader {
   private isFileTypeAllowed(file: File, allowedTypes: string[]): boolean {
     return allowedTypes.some((type) => {
       // Handle wildcards like "image/*"
-      if (type.endsWith("/*")) {
-        const category = type.split("/")[0];
+      if (type.endsWith('/*')) {
+        const category = type.split('/')[0];
         return file.type.startsWith(`${category}/`);
       }
 
       // Handle specific MIME types
-      if (type.includes("/")) {
+      if (type.includes('/')) {
         return file.type === type;
       }
 
       // Handle file extensions
-      if (type.startsWith(".")) {
+      if (type.startsWith('.')) {
         return file.name.toLowerCase().endsWith(type.toLowerCase());
       }
 

@@ -1,10 +1,15 @@
 {
   "name": "@gw-intech/upload-it",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Flexible and reusable file upload library with support for S3 and filesystem storage",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "browser": {
+    "fs": false,
+    "path": false,
+    "crypto": false
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
