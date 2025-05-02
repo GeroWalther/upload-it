@@ -1,0 +1,22 @@
+node_modules
+
+
+# Build output
+dist
+
+# Upload directories
+**/uploads
+**/upload
+**/public/uploads
+
+# Example uploads
+examples/**/uploads
+examples/**/public/uploads
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

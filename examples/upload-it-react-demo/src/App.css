@@ -1,0 +1,485 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Add stylish CSS for upload component */
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f5f7fa;
+  --accent-color: #6c63ff;
+  --text-color: #333;
+  --border-radius: 8px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9fafb;
+  color: var(--text-color);
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.upload-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.upload-card h1 {
+  margin-top: 0;
+  color: var(--text-color);
+  font-size: 28px;
+}
+
+.upload-card p {
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.upload-button-container {
+  margin: 24px 0;
+  margin-top: 300px;
+}
+
+.custom-upload-button {
+  background-color: var(--accent-color) !important;
+  color: white !important;
+  font-weight: 500 !important;
+  padding: 12px 24px !important;
+  border-radius: var(--border-radius) !important;
+  border: none !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.custom-upload-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(108, 99, 255, 0.2);
+}
+
+.uploaded-files {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.uploaded-files h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.uploaded-files ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.uploaded-files li {
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.uploaded-files a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.uploaded-files a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  padding: 10px;
+  margin-bottom: 15px;
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  gap: 1rem;
+}
+
+.tab {
+  padding: 10px 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.3s;
+  margin: 0 5px;
+}
+
+.tab:hover {
+  color: var(--accent-color);
+}
+
+.tab.active {
+  color: var(--accent-color);
+  border-bottom: 3px solid var(--accent-color);
+}
+
+.tab-content {
+  padding: 10px 0;
+}
+
+/* File List Styles */
+.file-list-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-options {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filter-button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-button.active {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.loading,
+.no-files {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.files-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.file-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.file-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.file-preview {
+  height: 150px;
+  background-color: #f7f9fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.file-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.file-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #e1e8f0;
+  color: #4a90e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.file-info {
+  padding: 1rem;
+}
+
+.file-name {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.file-provider {
+  background-color: #f0f0f0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  text-transform: capitalize;
+}
+
+.file-date {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 0.5rem;
+}
+
+.file-link {
+  display: block;
+  text-align: center;
+  background-color: #4a90e2;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.error-message {
+  background-color: #ffe8e8;
+  color: #d32f2f;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+/* DropZone Container Styles */
+.dropzone-container {
+  margin-bottom: 1.5rem;
+}
+
+.dropzone-container h3 {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+/* Demo layout styles for tab content with multiple upload methods */
+.tab-content > div > p {
+  margin-bottom: 1.5rem;
+}
+
+.upload-button-container h3 {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+/* Optional: add a divider between the dropzone and button sections */
+.dropzone-container::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background-color: #eee;
+  margin: 1.5rem 0;
+}
+
+.files-section {
+  margin-top: 2rem;
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+/* Add custom styling for the upload-it FileList component */
+.upload-it-filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.upload-it-filter-btn {
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  background-color: #f0f0f0;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.upload-it-filter-btn:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-it-filter-btn.active {
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(108, 99, 255, 0.2);
+}
+
+/* Custom styling for the FileList file display */
+.custom-file-list .upload-it-files-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.custom-file-list .upload-it-file-card {
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.custom-file-list .upload-it-file-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-color: #d0d0d0;
+}
+
+.custom-file-list .upload-it-file-preview {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #eaeaea;
+  padding: 10px;
+}
+
+/* Enhanced file icon styling */
+.custom-file-list .upload-it-file-icon {
+  width: 70px !important;
+  height: 70px !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 10px !important;
+}
+
+.custom-file-list .upload-it-file-icon svg {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+/* File info styling */
+.custom-file-list .upload-it-file-info {
+  padding: 12px !important;
+  text-align: center;
+}
+
+.custom-file-list .upload-it-file-name {
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  color: #333 !important;
+  margin: 0.5rem 0 0.4rem !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-file-list .upload-it-file-meta {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 8px;
+  font-size: 0.75rem !important;
+  color: #666 !important;
+}
+
+.custom-file-list .upload-it-file-provider {
+  background-color: #f0f0f0;
+  padding: 3px 8px;
+  border-radius: 20px;
+  text-transform: capitalize;
+  font-size: 0.7rem;
+}
+
+/* Remove download button and simplify UI */
+.custom-file-list .upload-it-file-actions {
+  display: none;
+}
